@@ -48,7 +48,6 @@
 		8F0F8B40235EF7C7006E5870 /* SMSortFirstCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F0F8B25235EF7C7006E5870 /* SMSortFirstCell.m */; };
 		8F0F8B41235EF7C7006E5870 /* SMSortTwoTitleViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8F0F8B29235EF7C7006E5870 /* SMSortTwoTitleViewCell.xib */; };
 		8F0F8B42235EF7C7006E5870 /* SMSortRightHeadView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F0F8B2C235EF7C7006E5870 /* SMSortRightHeadView.m */; };
-		8F0F8B43235EF7C7006E5870 /* SMNavTitleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F0F8B2E235EF7C7006E5870 /* SMNavTitleView.m */; };
 		8F0F8B44235EF7C7006E5870 /* SMSortRightHeadView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8F0F8B30235EF7C7006E5870 /* SMSortRightHeadView.xib */; };
 		8F0F8B45235EF7C7006E5870 /* SMSortFirstCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8F0F8B31235EF7C7006E5870 /* SMSortFirstCell.xib */; };
 		8F0F8B46235EF7C7006E5870 /* SMSortTwoTitleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F0F8B33235EF7C7006E5870 /* SMSortTwoTitleView.m */; };
@@ -182,7 +181,6 @@
 		8F0F8B23235EF7C7006E5870 /* SMSortTwoLeftCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMSortTwoLeftCell.m; sourceTree = "<group>"; };
 		8F0F8B24235EF7C7006E5870 /* SMSortTwoRightCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SMSortTwoRightCell.xib; sourceTree = "<group>"; };
 		8F0F8B25235EF7C7006E5870 /* SMSortFirstCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMSortFirstCell.m; sourceTree = "<group>"; };
-		8F0F8B26235EF7C7006E5870 /* SMNavTitleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMNavTitleView.h; sourceTree = "<group>"; };
 		8F0F8B27235EF7C7006E5870 /* SMSortTwoRightCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMSortTwoRightCell.h; sourceTree = "<group>"; };
 		8F0F8B28235EF7C7006E5870 /* SMSortTwoTitleViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMSortTwoTitleViewCell.h; sourceTree = "<group>"; };
 		8F0F8B29235EF7C7006E5870 /* SMSortTwoTitleViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SMSortTwoTitleViewCell.xib; sourceTree = "<group>"; };
@@ -190,7 +188,6 @@
 		8F0F8B2B235EF7C7006E5870 /* SMSortLeftHeadView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMSortLeftHeadView.h; sourceTree = "<group>"; };
 		8F0F8B2C235EF7C7006E5870 /* SMSortRightHeadView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMSortRightHeadView.m; sourceTree = "<group>"; };
 		8F0F8B2D235EF7C7006E5870 /* SMSortTwoLeftCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMSortTwoLeftCell.h; sourceTree = "<group>"; };
-		8F0F8B2E235EF7C7006E5870 /* SMNavTitleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMNavTitleView.m; sourceTree = "<group>"; };
 		8F0F8B2F235EF7C7006E5870 /* SMSortFirstCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMSortFirstCell.h; sourceTree = "<group>"; };
 		8F0F8B30235EF7C7006E5870 /* SMSortRightHeadView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SMSortRightHeadView.xib; sourceTree = "<group>"; };
 		8F0F8B31235EF7C7006E5870 /* SMSortFirstCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SMSortFirstCell.xib; sourceTree = "<group>"; };
@@ -487,7 +484,6 @@
 				8F0F8B23235EF7C7006E5870 /* SMSortTwoLeftCell.m */,
 				8F0F8B24235EF7C7006E5870 /* SMSortTwoRightCell.xib */,
 				8F0F8B25235EF7C7006E5870 /* SMSortFirstCell.m */,
-				8F0F8B26235EF7C7006E5870 /* SMNavTitleView.h */,
 				8F0F8B27235EF7C7006E5870 /* SMSortTwoRightCell.h */,
 				8F0F8B28235EF7C7006E5870 /* SMSortTwoTitleViewCell.h */,
 				8F0F8B29235EF7C7006E5870 /* SMSortTwoTitleViewCell.xib */,
@@ -495,7 +491,6 @@
 				8F0F8B2B235EF7C7006E5870 /* SMSortLeftHeadView.h */,
 				8F0F8B2C235EF7C7006E5870 /* SMSortRightHeadView.m */,
 				8F0F8B2D235EF7C7006E5870 /* SMSortTwoLeftCell.h */,
-				8F0F8B2E235EF7C7006E5870 /* SMNavTitleView.m */,
 				8F0F8B2F235EF7C7006E5870 /* SMSortFirstCell.h */,
 				8F0F8B30235EF7C7006E5870 /* SMSortRightHeadView.xib */,
 				8F0F8B31235EF7C7006E5870 /* SMSortFirstCell.xib */,
@@ -778,7 +773,6 @@
 				8F0F8AF8235EE870006E5870 /* UIActivityIndicatorView+AFNetworking.m in Sources */,
 				8F0F8B9E235F0007006E5870 /* SDWebImageTransition.m in Sources */,
 				8F0F8B9F235F0007006E5870 /* NSData+ImageContentType.m in Sources */,
-				8F0F8B43235EF7C7006E5870 /* SMNavTitleView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -950,6 +944,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 7XS355TM82;
 				INFOPLIST_FILE = NCDataWareModelDemo/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -967,6 +962,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 7XS355TM82;
 				INFOPLIST_FILE = NCDataWareModelDemo/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

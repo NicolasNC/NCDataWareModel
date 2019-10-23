@@ -11,13 +11,20 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface RequestModel : NCModel
+/*
+ url : Request url
+ params : Request params
+ requstType : Request Type  "POST" or "GET"
+ startRequest : if startRequest is true do not read cache
+ saveCache :  saveCache --save cache
+ offset :  cache key
+ */
 + (void)requestFunc:(NSString *)url
           params:(NSDictionary *)params
  withRequestType:(NSString *)requstType
 withStartRequest:(bool)startRequest
    withSaveCache:(bool)saveCache
       withOffset:(NSDictionary *)offset
-     cacheSuccess:(void (^)(id response))cacheSuccess
          success:(void (^)(id response))success
             failure:(void (^)(NSError *err))failure;
 @end

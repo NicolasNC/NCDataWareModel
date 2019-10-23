@@ -10,7 +10,6 @@
 #import "SMSortTwoLeftCell.h"
 #import "SMSortTwoRightCell.h"
 #import "SMAdProductModel.h"
-#import "SMNavTitleView.h"
 #import "SMSortLeftHeadView.h"
 #import "SMSortRightHeadView.h"
 #import "RequestModel.h"
@@ -35,7 +34,6 @@ static NSString* resuSMSortTwoRightCell = @"resuSMSortTwoRightCell";
 @property(nonatomic, strong)SMSortModel* selectedLeftSecondModel;
 @property(nonatomic, strong)UITableView* rightTableView;
 @property(nonatomic, strong)NSMutableArray* rightDataSource;
-@property(nonatomic, strong)SMNavTitleView* navTitleView;
 @property(nonatomic, strong)UILabel* titleLabel;
 @property(nonatomic, strong)UIImageView* titleImageView;
 @property(nonatomic, strong)NSMutableArray* sortDataSource;
@@ -51,11 +49,14 @@ static NSString* resuSMSortTwoRightCell = @"resuSMSortTwoRightCell";
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
-
     [self  setupUI];
-    [self loadData];
+    
+    [self loadData:false];
 }
-
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    [self loadData:true];
+}
 
 -(void)setupUI{
     self.imgHeight = (ScreenWidth-115)*89/261+30;
@@ -69,18 +70,19 @@ static NSString* resuSMSortTwoRightCell = @"resuSMSortTwoRightCell";
     
 }
 
--(void)loadData{
+-(void)loadData:(bool)request{
     self.headImageView.hidden = true;
     self.rightTableView.frame = CGRectMake(95, kNavBarHeight, ScreenWidth-95, ScreenHeight-kNavBarHeight-SafeAreaBottomHeight);    
     NSString *leftUrl = @"https://api.shelongwang.com:1111/supermarket/category/all/layer";
     [RequestModel requestFunc:leftUrl
                        params:@{@"categoryId":@"9",
                                 @"all":@"1"
-                       } withRequestType:@"GET" withStartRequest:false withSaveCache:true withOffset:@{@"categoryId":@"9",
+                       } withRequestType:@"GET" withStartRequest:request withSaveCache:true withOffset:@{@"categoryId":@"9",
                                                                                                       @"all":@"1"
-                       } cacheSuccess:^(id  _Nonnull response) {
-        NSLog(@"=====");
-    } success:^(id  _Nonnull response) {
+                       }
+     success:^(id  _Nonnull response) {
+        [self.leftDataSource removeAllObjects];
+        [self.leftTableView reloadData];
         if(response[@"data"] && [response[@"data"] isKindOfClass:[NSArray class]]){
                    NSArray* jsonArr = response[@"data"];
                    for (NSDictionary* jsonDict in jsonArr) {
@@ -96,19 +98,22 @@ static NSString* resuSMSortTwoRightCell = @"resuSMSortTwoRightCell";
                        [self.leftDataSource addObject:model];
                    }
                }
-               if (self.leftDataSource.count) {
-                   [self loadRightData];
-               }else{
-                   [self.rightTableView reloadData];
-               }
-               [self.leftTableView reloadData];
+        
+            __weak typeof(self) wf = self;
+            dispatch_async(dispatch_get_main_queue(), ^{
+                if (wf.leftDataSource.count != 0) {
+                    [wf loadRightData];
+                }else{
+                    [wf.rightTableView reloadData];
+                }
+                [wf.leftTableView reloadData];
+            });
+               
     } failure:^(NSError * _Nonnull err) {
        NSLog(@"error = %@",err);
     }];
 }
--(void)reloadVCData{
-    [self loadData];
-}
+
 -(void)loadRightData{
     [self.rightDataSource removeAllObjects];
     [self.rightTableView reloadData];
@@ -127,9 +132,13 @@ static NSString* resuSMSortTwoRightCell = @"resuSMSortTwoRightCell";
                              @"all":@"1"
         };
     }
-    [RequestModel requestFunc:url params:params withRequestType:@"GET" withStartRequest:true withSaveCache:true withOffset:@{@"categoryId":self.selectedLeftModel.Kid} cacheSuccess:^(id  _Nonnull response) {
-        
-    } success:^(id  _Nonnull response) {
+    
+    [RequestModel requestFunc:url
+                       params:params
+              withRequestType:@"GET"
+             withStartRequest:false
+                withSaveCache:true withOffset:@{@"categoryId":self.selectedLeftModel.Kid}
+    success:^(id  _Nonnull response) {
        if(response[@"data"] && [response[@"data"] isKindOfClass:[NSArray class]]){
             NSArray* data = response[@"data"];
             if (self.selectedLeftModel == self.leftDataSource.firstObject) {//全部
@@ -142,7 +151,6 @@ static NSString* resuSMSortTwoRightCell = @"resuSMSortTwoRightCell";
                         [self.rightDataSource addObject:model];
                     }
                 }
-                
             }else{//二级
                 if(response[@"data"] && [response[@"data"] isKindOfClass:[NSArray class]]){
                     NSArray* jsonArr = response[@"data"];
@@ -161,8 +169,12 @@ static NSString* resuSMSortTwoRightCell = @"resuSMSortTwoRightCell";
                 }
             }
         }
-        [self.rightTableView reloadData];
+        __weak typeof(self) wf = self;
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [wf.rightTableView reloadData];
+        });
     } failure:^(NSError * _Nonnull err) {
+        
         NSLog(@" error = %@",err);
     }];
    

@@ -80,20 +80,11 @@
     NSInteger status = [model  isWhatGOODStatus:model.status stockStatus:model.stockStatus];
     self.noImageView.hidden = false;
     self.sortImageView.alpha = 0.5;
-    if(status == 0){//没有了
-        self.addBtn.selected = true;
-        self.addBtn.userInteractionEnabled = false;
-        self.noImageView.image = [UIImage  imageNamed:@"suYipa"];
-    }else if (status == 1){//有货
-        self.sortImageView.alpha = 1.0;
-        self.addBtn.selected = false;
-        self.addBtn.userInteractionEnabled = true;
-        self.noImageView.hidden = true;
-    }else{//下架了
-        self.addBtn.selected = true;
-        self.addBtn.userInteractionEnabled = false;
-        self.noImageView.image = [UIImage  imageNamed:@"suXiaJia"];
-    }
+    
+    self.sortImageView.alpha = 1.0;
+    self.addBtn.selected = false;
+    self.addBtn.userInteractionEnabled = true;
+    self.noImageView.hidden = true;
 }
 -(NSString*)labelText:(NSNumber*)num{
     NSString* str = @"";

@@ -32,25 +32,47 @@
    withStartRequest:(bool)startRequest
       withSaveCache:(bool)saveCache
          withOffset:(NSDictionary *)offset
-        cacheSuccess:(void (^)(id response))cacheSuccess
             success:(void (^)(id response))success
             failure:(void (^)(NSError *err))failure{
     if([requstType isEqualToString:@"GET"]) {
       url = [url stringByAppendingString:[RequestModel obtainSplice:params]];
     }
     if(!startRequest) {
-  dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-            NCDataWareModel *dwm = [NCDataWareModel sharedCache];
+   dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+          NCDataWareModel *dwm = [NCDataWareModel sharedCache];
             [dwm obtainData:url withOffset:offset withBlock:^(TMCache *cache, NSString *key, id object) {
                 if(object) {
                     NSDictionary *diccc = [[NCDataWareModel sharedCache] decodeObtainData:object];
-                    cacheSuccess(diccc);
-                    return;
+                    success(diccc);
+                }else{
+                  [RequestModel requestFunc2:url
+                           params:params
+                   withRequestType:requstType
+                     withSaveCache:saveCache
+                        withOffset:offset
+                           success:success
+                          failure:failure];
                 }
             }];
         });
+        return;
     }
-    
+    [RequestModel requestFunc2:url
+                       params:params
+               withRequestType:requstType
+                 withSaveCache:saveCache
+                    withOffset:offset
+                       success:success
+                      failure:failure];
+}
+
++ (void)requestFunc2:(NSString *)url
+          params:(NSDictionary *)params
+ withRequestType:(NSString *)requstType
+   withSaveCache:(bool)saveCache
+      withOffset:(NSDictionary *)offset
+         success:(void (^)(id response))success
+            failure:(void (^)(NSError *err))failure{
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     manager.responseSerializer = [AFHTTPResponseSerializer serializer];
     manager.requestSerializer.timeoutInterval = 30;
